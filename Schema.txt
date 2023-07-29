@@ -18,30 +18,30 @@
    - Indirizzo
    - Numero_Telefono
 
-4. Tabella "Volo":
-   - ID_Volo (Chiave primaria)
-   - Numero_Volo
-   - Data_Partenza
-   - Ora_Partenza
-   - Aeroporto_Partenza (Chiave esterna referenzia l'entità "Aeroporto")
-   - Aeroporto_Arrivo (Chiave esterna referenzia l'entità "Aeroporto")
-   - Compagnia (Chiave esterna referenzia l'entità "CompagniaAerea")
-
-5. Tabella "Prenotazione":
-   - ID_Prenotazione (Chiave primaria)
-   - Codice_Prenotazione (un codice univoco per ogni prenotazione)
-   - Data_Prenotazione
-   - ID_Passeggero (Chiave esterna referenzia l'entità "Passeggero")
-   - ID_Volo (Chiave esterna referenzia l'entità "Volo")
-   - ID_Posto (Chiave esterna referenzia l'entità "Posto") 
-
-6. Tabella "Aereo":
+4. Tabella "Aereo":
    - ID_Aereo (Chiave primaria)
    - Numero_Serie
    - Modello
    - Capacità_Passeggeri
    - Anno_Fabbricazione
    - Compagnia (Chiave esterna referenzia l'entità "CompagniaAerea")
+
+5. Tabella "Volo":
+   - ID_Volo (Chiave primaria)
+   - Numero_Volo
+   - Data_Partenza
+   - Ora_Partenza
+   - Aeroporto_Partenza (Chiave esterna referenzia l'entità "Aeroporto")
+   - Aeroporto_Arrivo (Chiave esterna referenzia l'entità "Aeroporto")
+   - ID_Aereo (Chiave esterna referenzia l'entità "Aereo")
+
+6. Tabella "Prenotazione":
+   - ID_Prenotazione (Chiave primaria)
+   - Codice_Prenotazione (un codice univoco per ogni prenotazione)
+   - Data_Prenotazione
+   - ID_Passeggero (Chiave esterna referenzia l'entità "Passeggero")
+   - ID_Volo (Chiave esterna referenzia l'entità "Volo")
+   - ID_Posto (Chiave esterna referenzia l'entità "Posto") 
 
 7. Tabella "Posto":
    - ID_Posto (Chiave primaria)
