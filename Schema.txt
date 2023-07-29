@@ -1,5 +1,3 @@
-Certamente! Di seguito, ti fornisco uno schema logico con tabelle più pertinenti, sostituendo "Bagaglio", "Gate" e "Personale" con tabelle più specifiche per la gestione di una rete aeroportuale:
-
 1. Tabella "Aeroporto":
    - ID_Aeroporto (Chiave primaria)
    - Nome_Aeroporto
