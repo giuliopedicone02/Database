@@ -33,6 +33,7 @@
    - Data_Prenotazione
    - ID_Passeggero (Chiave esterna referenzia l'entità "Passeggero")
    - ID_Volo (Chiave esterna referenzia l'entità "Volo")
+   - ID_Posto (Chiave esterna referenzia l'entità "Posto")
 
 6. Tabella "Aereo":
    - ID_Aereo (Chiave primaria)
