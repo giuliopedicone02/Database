@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS `uni_fly`;
+CREATE DATABASE IF NOT EXISTS `uni_fly`;
+USE `uni_fly`;

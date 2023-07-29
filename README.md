@@ -4,7 +4,7 @@
 
 # Basi Di Dati (A.A. 2022-23 Alaimo S.)
 
-Repository creata a scopo didattico per essere utilizzata come backup dei file creati a lezione.
+Progetto relativo alla gestione di una Rete Aeroportuale, realizzato nei mesi di luglio ed agosto 2023.
 
 ## Authors
 

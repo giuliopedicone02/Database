@@ -1,0 +1,76 @@
+Certamente! Di seguito, ti fornisco uno schema logico con tabelle più pertinenti, sostituendo "Bagaglio", "Gate" e "Personale" con tabelle più specifiche per la gestione di una rete aeroportuale:
+
+1. Tabella "Aeroporto":
+   - ID_Aeroporto (Chiave primaria)
+   - Nome_Aeroporto
+   - Città
+   - Paese
+   - Codice_ICAO
+
+2. Tabella "CompagniaAerea":
+   - ID_Compagnia (Chiave primaria)
+   - Nome_Compagnia
+   - Codice_ICAO
+
+3. Tabella "Passeggero":
+   - ID_Passeggero (Chiave primaria)
+   - Nome
+   - Cognome
+   - Data_Nascita
+   - Indirizzo
+   - Numero_Telefono
+
+4. Tabella "Volo":
+   - ID_Volo (Chiave primaria)
+   - Numero_Volo
+   - Data_Partenza
+   - Ora_Partenza
+   - Aeroporto_Partenza (Chiave esterna referenzia l'entità "Aeroporto")
+   - Aeroporto_Arrivo (Chiave esterna referenzia l'entità "Aeroporto")
+   - Compagnia (Chiave esterna referenzia l'entità "CompagniaAerea")
+
+5. Tabella "Prenotazione":
+   - ID_Prenotazione (Chiave primaria)
+   - Codice_Prenotazione (un codice univoco per ogni prenotazione)
+   - Data_Prenotazione
+   - ID_Passeggero (Chiave esterna referenzia l'entità "Passeggero")
+   - ID_Volo (Chiave esterna referenzia l'entità "Volo")
+
+6. Tabella "Aereo":
+   - ID_Aereo (Chiave primaria)
+   - Numero_Serie
+   - Modello
+   - Capacità_Passeggeri
+   - Anno_Fabbricazione
+   - Compagnia (Chiave esterna referenzia l'entità "CompagniaAerea")
+
+7. Tabella "Posto":
+   - ID_Posto (Chiave primaria)
+   - Numero_Posto
+   - Classe (es. Economy, Business, First)
+
+8. Tabella "Equipaggio":
+   - ID_Equipaggio (Chiave primaria)
+   - Nome
+   - Cognome
+   - Data_Nascita
+   - Ruolo (es. Pilota, Assistente di volo, Ecc.)
+
+9. Tabella "AssegnazioneEquipaggio":
+   - ID_AssegnazioneEquipaggio (Chiave primaria)
+   - ID_Equipaggio (Chiave esterna referenzia l'entità "Equipaggio")
+   - ID_Volo (Chiave esterna referenzia l'entità "Volo")
+
+10. Tabella "ServizioVolo":
+    - ID_ServizioVolo (Chiave primaria)
+    - Descrizione
+    - Costo
+    - ID_Volo (Chiave esterna referenzia l'entità "Volo")
+
+In questo nuovo schema, abbiamo sostituito la tabella "Bagaglio" con la tabella "Posto", che rappresenta i posti sull'aereo e include dettagli come il numero del posto e la classe (Economy, Business, First).
+
+Inoltre, abbiamo sostituito la tabella "Gate" con la tabella "Equipaggio", che gestisce le informazioni sull'equipaggio di volo, come i piloti e gli assistenti di volo. La tabella "AssegnazioneEquipaggio" è stata introdotta per stabilire una relazione tra l'equipaggio di volo e i voli a cui sono assegnati.
+
+Infine, la tabella "Personale" è stata sostituita con la tabella "ServizioVolo", che tiene traccia dei servizi offerti su ciascun volo, come pasti speciali o Wi-Fi a bordo.
+
+Queste modifiche rendono lo schema più specifico e pertinente per la gestione di una rete aeroportuale.
