@@ -61,7 +61,7 @@
    - ID_Equipaggio (Chiave esterna referenzia l'entità "Equipaggio")
    - ID_Volo (Chiave esterna referenzia l'entità "Volo")
 
-10. Tabella "ServizioVolo":
+10. Tabella "Servizio":
     - ID_ServizioVolo (Chiave primaria)
     - Descrizione
     - Costo
