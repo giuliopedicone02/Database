@@ -8,6 +8,7 @@
 2. Tabella "CompagniaAerea":
    - ID_Compagnia (Chiave primaria)
    - Nome_Compagnia
+   - Anno_Fondazione
    - Codice_ICAO
 
 3. Tabella "Passeggero":
@@ -15,7 +16,6 @@
    - Nome
    - Cognome
    - Data_Nascita
-   - Indirizzo
    - Numero_Telefono
 
 4. Tabella "Aereo":
