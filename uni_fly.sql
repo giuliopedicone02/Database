@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ago 05, 2023 alle 17:16
+-- Creato il: Ago 05, 2023 alle 18:57
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -20,10 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `unifly`
 --
-
-DROP DATABASE IF EXISTS `uni_fly`;
-CREATE DATABASE IF NOT EXISTS `uni_fly`;
-USE `uni_fly`;
 
 -- --------------------------------------------------------
 
@@ -393,6 +389,48 @@ INSERT INTO `prenotazione` (`ID_Prenotazione`, `Codice_Prenotazione`, `Data_Pren
 (49, 'P0049', '2023-09-22', 29, 28, 43),
 (50, 'P0050', '2023-09-23', 30, 14, 50);
 
+--
+-- Trigger `prenotazione`
+--
+DELIMITER $$
+CREATE TRIGGER `NO_Overbooking` BEFORE INSERT ON `prenotazione` FOR EACH ROW BEGIN
+    DECLARE total_posti_prenotati INT;
+    DECLARE capacita_aereo INT;
+    
+    -- Calcola il numero di posti già prenotati per il volo della nuova prenotazione
+    SELECT COUNT(ID_Prenotazione) INTO total_posti_prenotati
+    FROM Prenotazione
+    WHERE ID_Volo = NEW.ID_Volo;
+    
+    -- Ottieni la capacità massima dell'aereo del volo della nuova prenotazione
+    SELECT Capacità_Passeggeri INTO capacita_aereo
+    FROM Aereo
+    WHERE ID_Aereo = (
+        SELECT ID_Aereo
+        FROM Volo
+        WHERE ID_Volo = NEW.ID_Volo
+    );
+
+    -- Se il numero di posti prenotati supera la capacità dell'aereo, genera un errore
+    IF total_posti_prenotati >= capacita_aereo THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Numero massimo di posti prenotati superato per questo volo.';
+    END IF;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura stand-in per le viste `prenotazionipervolo`
+-- (Vedi sotto per la vista effettiva)
+--
+CREATE TABLE `prenotazionipervolo` (
+`ID_Volo` int(11)
+,`NumeroPrenotazioni` bigint(21)
+);
+
 -- --------------------------------------------------------
 
 --
@@ -473,6 +511,15 @@ INSERT INTO `volo` (`ID_Volo`, `Numero_Volo`, `Data_Partenza`, `Ora_Partenza`, `
 (28, 'FR789', '2023-08-19', '16:45:00', 1, 3, 3),
 (29, 'W6MNO', '2023-08-19', '18:00:00', 2, 4, 4),
 (30, 'EZY567', '2023-08-19', '19:15:00', 3, 5, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura per vista `prenotazionipervolo`
+--
+DROP TABLE IF EXISTS `prenotazionipervolo`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `prenotazionipervolo`  AS SELECT `prenotazione`.`ID_Volo` AS `ID_Volo`, count(`prenotazione`.`ID_Prenotazione`) AS `NumeroPrenotazioni` FROM `prenotazione` GROUP BY `prenotazione`.`ID_Volo` ;
 
 --
 -- Indici per le tabelle scaricate
