@@ -21,6 +21,10 @@ SET time_zone = "+00:00";
 -- Database: `unifly`
 --
 
+DROP DATABASE IF EXISTS `uni_fly`;
+CREATE DATABASE IF NOT EXISTS `uni_fly`;
+USE `uni_fly`;
+
 -- --------------------------------------------------------
 
 --
